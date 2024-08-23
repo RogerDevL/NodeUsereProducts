@@ -3,6 +3,7 @@ const router =  require('./router/router');
 const sequelize = require('./config/config');
 const User = require('./models/User');
 const Produtos = require('./models/Produtos');
+const Funcionario = require('./models/Funcionario');
 
 
 
@@ -52,7 +53,7 @@ sequelize.authenticate()
 
  //encerra o processo se houver um erro
 .catch((error)=>{
-    console.error("erro ao se conectar com o banco:", error);
+    console.error("Erro ao se conectar com o banco:", error);
 });
 
 
