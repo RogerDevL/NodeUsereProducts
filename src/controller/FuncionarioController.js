@@ -11,7 +11,7 @@ const FuncionarioController = {
 
 
             return res.status(200).json({
-                msg:"Usuario deletado",
+                msg:"Funcionario criado",
                 funcionarioCriado
             })
         } catch (error) {

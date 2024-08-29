@@ -1,16 +1,56 @@
 const User = require("../models/User");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const UserController = {
-    create: async(req, res)=>{
-        
+
+    login:async(req, res)=>{
+        try {
+            const {email,senha} = req.body;
+            const user = await User.findOne({where: { email }});
+
+            if(!user){
+                return res.status(404).json({
+                    msg:"email ou senha incorretos!"
+                });
+            };
+
+            const isValida = await bcrypt.compare(senha, user.senha);
+            if(!isValida) {
+                return res.status(404).json({
+                    msg:"Email ou senha incorretos!"
+                })
+            }
+
+            const token = jwt.sign({
+                email: user.email,
+                 nome: user.nome
+                },process.env.SECRET, { expiresIn: '1h'})
+
+                return res.status(200).json({
+                    msg:"login realizado!",
+                    token
+                })
+            
+        } catch (error) {
+            return res.status(500).json({
+                msg:"Acione o Roger"
+            })
+            
+        }
+
+    },
+    create: async(req, res) => {
         try {
             // pegando imformacoes do body, o que o usuario digitou.
             const {nome, senha, email} = req.body;
-            
-
-            const userCriado = await User.create({nome, senha, email})
+        
 
 
+            // o 10 é o salt, que tem 12 salts ao limite
+            const hastSenha = await bcrypt.hash(senha,10)
+            const userCriado = await User.create({nome, senha:hastSenha, email})
 
+        
 
 
             return res.status(200).json({

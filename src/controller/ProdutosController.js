@@ -35,12 +35,14 @@ const ProdutosController = {
             produtoAtualizado.preco = preco;
             produtoAtualizado.quantidade = quantidade;
 
+            produtoAtualizado.save();
 
             return res.status(200).json({
                 msg: "produto atualizado",
                 produtoAtualizado
             })
 
+           
             
             
         } catch (error) {
@@ -91,12 +93,17 @@ const ProdutosController = {
             const { id } = req.params;
 
             const produtoDeletado = await Produtos.findByPk(id);
+            produtoDeletado.destroy();
 
 
             return res.status(200).json({
-                msg:"Usuario deletado",
+                msg:"Produto deletado",
                 product: produtoDeletado
             })
+
+            
+
+
         } catch (error) {
             res.status(500).json({
                 msg:"contate o Roger"

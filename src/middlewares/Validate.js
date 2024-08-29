@@ -31,6 +31,7 @@ const validateProduto = (req, res, next) => {
             msg:"Campos invalidos, revise caro amigo."
         });
     }
+    return next();
 };
 
 const validateProdutoId = (req, res, next) =>{
@@ -40,6 +41,7 @@ const validateProdutoId = (req, res, next) =>{
             msg:"Parametro faltando"
         });
     }
+    return next();
 };
 
 const validateFunc = (req, res, next) =>{
@@ -51,6 +53,7 @@ const validateFunc = (req, res, next) =>{
         });
 
     }
+    return next();
 };
 
 const validateFuncId = (req, res, next) => {
@@ -61,6 +64,7 @@ const validateFuncId = (req, res, next) => {
             msg:"Parametro faltando."
         });
     }
+    return next();
 };
 
 module.exports = { validateUser, ValidateUserId, validateProduto, validateProdutoId,  validateFunc, validateFuncId};

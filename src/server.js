@@ -6,7 +6,7 @@ const Produtos = require('./models/Produtos');
 const Funcionario = require('./models/Funcionario');
 
 
-
+require('dotenv').config();
 const app = express();
  
 
@@ -42,7 +42,7 @@ sequelize.authenticate()
 
 //Listen -> ouvindo na porta 8080
 .then(()=>{
-    app.listen(8080, ()=>[
+    app.listen(process.env.PORT == null ? 8080: process.env.PORT, () => [
         console.log('###############################'),
         console.log('Estamos onlines na http://localhost:8080'),
         console.log('###############################')
