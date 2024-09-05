@@ -86,7 +86,7 @@ const FuncionarioController = {
             })
         } catch (error) {
             res.status(500).json({
-                msg:"contate o Roger"
+                msg:"Contate o Roger"
                 }
             )
         }

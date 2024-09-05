@@ -4,6 +4,7 @@ const produtosRoutes = require('./routerProdutos');
 const funcionariosRoutes = require('./routerFunc')
 const UserController = require('../controller/UserController');
 const authenticateToken = require('../middlewares/authenticateToken');
+const uploadRouter = require('./routerUpload');
 
 // const ProdutosController = require('../controller/ProdutosController');
 // const { validateUser, ValidateUserId, validateProduto, validateProdutoId, validateFunc, validateFuncId } = require('../middlewares/Validate');
@@ -11,7 +12,9 @@ const authenticateToken = require('../middlewares/authenticateToken');
 
 const router = Router();
 
-router.use('/user/', userRoutes);
+router.use('/image', uploadRouter);
+
+router.use('/user', userRoutes);
 
 router.post('/login',  (req, res) =>{
     UserController.login(req, res)

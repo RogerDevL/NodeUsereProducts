@@ -4,12 +4,13 @@ const sequelize = require('./config/config');
 const User = require('./models/User');
 const Produtos = require('./models/Produtos');
 const Funcionario = require('./models/Funcionario');
+const cors = require('cors');
 
 
 require('dotenv').config();
 const app = express();
  
-
+app.use(cors());
 //modelo API json
 app.use(express.json());
 
@@ -55,6 +56,8 @@ sequelize.authenticate()
 .catch((error)=>{
     console.error("Erro ao se conectar com o banco:", error);
 });
+
+
 
 
 

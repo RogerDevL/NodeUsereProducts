@@ -67,4 +67,4 @@ const validateFuncId = (req, res, next) => {
     return next();
 };
 
-module.exports = { validateUser, ValidateUserId, validateProduto, validateProdutoId,  validateFunc, validateFuncId};
+module.exports = { validateUser, ValidateUserId, validateProduto, validateProdutoId,  validateFunc, validateFuncId };
